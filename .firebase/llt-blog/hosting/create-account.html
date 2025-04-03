@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Blog Platform</title>
+  </head>
+  <body>
+    <header>
+      <h1>Create an Account</h1>
+    </header>
+    <main>
+      <section>
+        <form onsubmit="return createUser(event)" action="index.html">
+          <fieldset aria-labelledby="signup-title">
+            <legend id="signup-title">Get Started</legend>
+            <div>
+              <label for="username" name="username">Choose a Username</label>
+              <input
+                required
+                placeholder="e.g., coolUser123"
+                id="Username"
+                name="username"
+              />
+            </div>
+            <div>
+              <label for="email" name="email">Your Email Address</label>
+              <input
+                required
+                type="email"
+                placeholder="e.g., user@example.com"
+                id="email"
+                name="email"
+              />
+            </div>
+            <div>
+              <label for="password" name="password">Create a Password</label>
+              <input
+                required
+                type="password"
+                placeholder="At least 8 characters"
+                id="password"
+                aria-describedby="password-help"
+                name="password"
+              />
+            </div>
+            <div>
+              <small id="password-help">Must be at least 8 characters.</small>
+            </div>
+            <div>
+              <label for="password-confirmation" name="password-confirmation"
+                >Confirm Your Password</label
+              >
+              <input
+                required
+                type="password"
+                placeholder="Re-enter your password"
+                id="password-confirmation"
+                name="passwordConfirmation"
+              />
+            </div>
+
+            <button type="submit">Sign Up Now</button>
+          </fieldset>
+        </form>
+      </section>
+      <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+    </main>
+    <script>
+      function createUser(event) {
+        event.preventDefault();
+
+        console.log("okokoko", event);
+
+        fetch("https://lowlifeblog.onrender.com/create", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            username: event.target.username.value,
+            email: event.target.email.value,
+            password: event.target.password.value,
+            confirmPassword: event.target.passwordConfirmation.value,
+            avatar: "asd.com",
+          }),
+        });
+      }
+    </script>
+  </body>
+</html>
